@@ -40,7 +40,7 @@ class WatchConnectivityManager: NSObject, WCSessionDelegate {
     // MARK: - Properties
 
     private var defaultSession: WCSession {
-        return WCSession.default()
+        return WCSession.default
     }
     
     /// Called from main queue.

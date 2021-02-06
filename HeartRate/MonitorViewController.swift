@@ -60,7 +60,7 @@ class MonitorViewController: UIViewController, UITableViewDataSource, UITableVie
     private lazy var tableViewHeaderView: UIView = { [unowned self] in
         
         let headerView = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight))
-        headerView.addSubview(self.chartImageView)
+        headerView.contentView.addSubview(self.chartImageView)
         
         self.chartImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -73,7 +73,7 @@ class MonitorViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let seperatorLine = UIView()
         seperatorLine.backgroundColor = UIColor(red: 200/255, green: 199/255, blue: 204/255, alpha: 1)
-        headerView.addSubview(seperatorLine)
+        headerView.contentView.addSubview(seperatorLine)
         
         seperatorLine.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -222,10 +222,10 @@ class MonitorViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.textLabel?.text = "\(record.intergerValue)"
         cell.detailTextLabel?.text = DateFormatter.localizedString(from: record.recordDate, dateStyle: .none, timeStyle: .medium)
         
-        let font = UIFont.monospacedDigitSystemFont(ofSize: 17, weight: UIFontWeightRegular)
+        let font = UIFont.monospacedDigitSystemFont(ofSize: 17, weight: UIFont.Weight.regular)
         cell.textLabel?.font = font
         
-        cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 17, weight: UIFontWeightRegular)
+        cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.regular)
         
         return cell
     }
