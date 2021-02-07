@@ -1,8 +1,10 @@
 //
 //  MonitorViewController.swift
-//  HeartRate
+//  View Controller that shows the history of heart rate messages from the watch,
+//  including a simple chart showing the last x messages
 //
 //  Created by Jonny on 10/25/16.
+//  Updating for Blockchain Healthcare project by Jit - started Feb 1, 2021
 //  Copyright © 2016 Jonny. All rights reserved.
 //
 
@@ -61,7 +63,7 @@ class MonitorViewController: UIViewController, UITableViewDataSource, UITableVie
     // How high the tableviewheader is - manually set??
     private let tableViewHeaderHeight: CGFloat = 44 * 3
     
-    // Ok this is the first Healthkit class we are using.
+    // HeartRateManager is a model class to save heartrate records
     private let heartRateManager = HeartRateManager()
     
     // This allows us to check if the watch is connected.
@@ -125,18 +127,22 @@ class MonitorViewController: UIViewController, UITableViewDataSource, UITableVie
     
     deinit {
         print("deinit \(type(of: self))")
+        // invalidate the messageHandler
         messageHandler?.invalidate()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Handler for when heartRateManager updates - update the table and chart
+        // enable trash button if records are present
         heartRateManager.recordsUpdateHandler = { records in
             self.tableView.reloadData()
             self.updateChartIfNeeded()
             self.trashButtonItem.isEnabled = !records.isEmpty
         }
         
+        // First load - update chart - maybe this will show where data is stored (?)
         self.updateChartIfNeeded()
         
         // Handle session messages between iPhone and Apple Watch.
@@ -147,12 +153,17 @@ class MonitorViewController: UIViewController, UITableViewDataSource, UITableVie
             return
         }
         
+        // set up the message Handler to get messages from the watch and react appropriately
         messageHandler = WatchConnectivityManager.MessageHandler { [weak self] message in
+            // What does this line mean??? why would self be weak?
             guard let `self` = self else { return }
             
-            print(message)
+            // I need to monitor the prints
+            print("Message received: \(message)")
             print("\n")
             
+            // What kinds of things will be in message? What if the watch app is started without the
+            // iOS app? Are we going to still get the messages?
             if let intergerValue = message[.heartRateIntergerValue] as? Int,
                 let recordDate = message[.heartRateRecordDate] as? Date {
                 
@@ -160,11 +171,11 @@ class MonitorViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.heartRateManager.save([newRecord])
                 self.monitorState = .running
                 
-//                self.heartRateRecords.insert(newRecord, at: 0)
-//                self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-//                self.updateChartIfNeeded()
-                
-//                CloudKitManager.shared.saveRecords([newRecord.ckRecord])
+                //  self.heartRateRecords.insert(newRecord, at: 0)
+                //  self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+                //  self.updateChartIfNeeded()
+                                
+                //  CloudKitManager.shared.saveRecords([newRecord.ckRecord])
             }
             else if message[.workoutStop] != nil{
                 self.monitorState = .notStarted
@@ -181,6 +192,7 @@ class MonitorViewController: UIViewController, UITableViewDataSource, UITableVie
         manager.addMessageHandler(messageHandler!)
     }
     
+    // I have never used this one before - what does this do?
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         coordinator.animate(alongsideTransition: { _ in self.updateChartIfNeeded() }, completion: nil)
@@ -211,7 +223,7 @@ class MonitorViewController: UIViewController, UITableViewDataSource, UITableVie
             integers = Array(integers.reversed())
         }
         
-//        let minimunInteger = 40 // integers.min()!
+        // let minimunInteger = 40 // integers.min()!
         
         let numbers = integers.map { NSNumber(integerLiteral: $0) }
         
@@ -235,7 +247,8 @@ class MonitorViewController: UIViewController, UITableViewDataSource, UITableVie
         let record = heartRateManager.records[indexPath.row]
         
         cell.textLabel?.text = "\(record.intergerValue)"
-        cell.detailTextLabel?.text = DateFormatter.localizedString(from: record.recordDate, dateStyle: .none, timeStyle: .medium)
+        cell.detailTextLabel?.text = DateFormatter.localizedString(from: record.recordDate,
+                                                                   dateStyle: .none, timeStyle: .medium)
         
         let font = UIFont.monospacedDigitSystemFont(ofSize: 17, weight: UIFont.Weight.regular)
         cell.textLabel?.font = font

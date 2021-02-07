@@ -42,7 +42,8 @@ class HeartRateManager {
             
             let termRecordsRaw = UserDefaults.standard.value(forKey: Key.recordDictionary) as? [[String : Any]] ?? []
             
-            let records = termRecordsRaw.flatMap { HeartRateRecord(propertyList: $0) }
+            // Changed from flatMap to compactMap - hopefully will not break anything. flatMap was deprecated
+            let records = termRecordsRaw.compactMap { HeartRateRecord(propertyList: $0) }
             
             DispatchQueue.main.async {
                 self.records = records

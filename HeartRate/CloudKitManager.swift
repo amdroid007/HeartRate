@@ -126,7 +126,7 @@ class CloudKitManager {
             } else {
                 UserDefaults.standard.set(nil, forKey: Key.privateDatabaseChangeToken)
             }
-            print("privateDatabaseChangeToken didSet \(privateDatabaseChangeToken)")
+            print("privateDatabaseChangeToken didSet \(privateDatabaseChangeToken?.description ?? "No token")")
         }
     }
     
