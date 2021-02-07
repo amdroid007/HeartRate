@@ -10,12 +10,16 @@ import UIKit
 
 class MonitorViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    // Enumerated datatype to store the different monitor states
     enum MonitorState {
         case notStarted, launching, running, errorOccur(Error)
     }
     
     // MARK: - Properties
     
+    // Ok this is a property of the viewcontroller - monitorState of type Monitorstate
+    // looks like default value is notStarted - and has a setter embedded
+    // This is cool - just setting a property also make changes to the UI.
     var monitorState = MonitorState.notStarted {
         didSet {
             DispatchQueue.main.async {
@@ -39,6 +43,9 @@ class MonitorViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+    
+    // Outlet property of the table - why is didSet in this one? Shouldn't this be set from
+    // the storyboard?
     @IBOutlet private var tableView: UITableView! {
         didSet {
             tableView.dataSource = self
@@ -51,26 +58,33 @@ class MonitorViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBOutlet private var startStopBarButtonItem: UIBarButtonItem!
     
+    // How high the tableviewheader is - manually set??
     private let tableViewHeaderHeight: CGFloat = 44 * 3
     
+    // Ok this is the first Healthkit class we are using.
     private let heartRateManager = HeartRateManager()
     
+    // This allows us to check if the watch is connected.
     private var messageHandler: WatchConnectivityManager.MessageHandler?
     
+    // No idea what "lazy" var is? Some kind of on demand variable that is calculated
+    // by a function at runtime - and only when used.
     private lazy var tableViewHeaderView: UIView = { [unowned self] in
         
+        // Create the header of the table that shows an image represenging a chart of the data
         let headerView = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight))
         headerView.contentView.addSubview(self.chartImageView)
         
         self.chartImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.chartImageView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
-//            self.chartImageView.topAnchor.constraint(equalTo: headerView.topAnchor),
+            //  self.chartImageView.topAnchor.constraint(equalTo: headerView.topAnchor),
             self.chartImageView.topAnchor.constraint(equalTo: headerView.centerYAnchor, constant: -24),
             self.chartImageView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
             self.chartImageView.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
         ])
         
+        // Add a line to separate the chart from the table
         let seperatorLine = UIView()
         seperatorLine.backgroundColor = UIColor(red: 200/255, green: 199/255, blue: 204/255, alpha: 1)
         headerView.contentView.addSubview(seperatorLine)
@@ -92,6 +106,7 @@ class MonitorViewController: UIViewController, UITableViewDataSource, UITableVie
         return imageView
     }()
     
+    // Heartratechartgenerator is a chart using YoLineImageKit (Pod is available but the project does not use it)
     private let heartRateChartGenerator: YOLineChartImage = {
         
         let chartGenerator = YOLineChartImage()
@@ -128,7 +143,7 @@ class MonitorViewController: UIViewController, UITableViewDataSource, UITableVie
         guard let manager = WatchConnectivityManager.shared else {
             // if the current device don't support Watch Connectivity framework, disable the start/stop button.
             startStopBarButtonItem.isEnabled = false
-            title = ""
+            title = "No watch available"
             return
         }
         
