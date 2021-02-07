@@ -15,18 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+        // This is likely for Cloudkit implementation so we may not need this
+        application.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         application.registerForRemoteNotifications()
         
         // activate WCSession at app startup.
         WatchConnectivityManager.shared?.activate()
-        
+        // These are things that we are reading - probably want to ask for stepcount as well?
         if HKHealthStore.isHealthDataAvailable() {
             let heartRateType = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate)!
-            let typesToRead = Set([heartRateType])
+            let stepCountType = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
+            let typesToRead = Set([heartRateType, stepCountType])
             
             HKHealthStore().requestAuthorization(toShare: nil, read: typesToRead) { success, error in }
         }

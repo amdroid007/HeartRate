@@ -1,6 +1,6 @@
 //
 //  HeartRateRecord.swift
-//  HeartRate
+//  HeartRateRecord model class - one data point?
 //
 //  Created by Jonny on 11/7/16.
 //  Copyright © 2016 Jonny. All rights reserved.
@@ -18,6 +18,7 @@ struct HeartRateRecord {
         self.uuid = UUID()
     }
     
+    // Create a heartrate record from a property list
     init?(propertyList: [String : Any]) {
         
         guard let intergerValue = propertyList["intergerValue"] as? Int,
@@ -30,6 +31,7 @@ struct HeartRateRecord {
         self.uuid = uuid
     }
     
+    // Generate a propertyList from the record
     var propertyList: [String : Any] {
         return [
             "intergerValue" : intergerValue,

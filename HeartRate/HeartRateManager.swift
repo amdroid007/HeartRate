@@ -1,6 +1,6 @@
 //
 //  HeartRateManager.swift
-//  HeartRate
+//  HeartRate Data storage class - gets the data from HealthStore and stores it (where? iCloud?)
 //
 //  Created by Jonny on 11/7/16.
 //  Copyright © 2016 Jonny. All rights reserved.
@@ -18,8 +18,9 @@ func synchronized(_ lock: Any, closure: () -> ()) {
 
 class HeartRateManager {
     
-    private let healthStore = HKHealthStore()
+    private let healthStore = HKHealthStore() // This is where health data is stored
     
+    // Main data structure is an array of HeartRateRecords
     var records = [HeartRateRecord]() {
         didSet {
             recordsUpdateHandler?(records)
@@ -36,10 +37,11 @@ class HeartRateManager {
     
     init() {
      
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive), name: .UIApplicationWillResignActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive), name: UIApplication.willResignActiveNotification, object: nil)
         
         DispatchQueue.global(qos: .userInitiated).async {
             
+            // As I expected - data is stored (temporarily?) in UserDefaults
             let termRecordsRaw = UserDefaults.standard.value(forKey: Key.recordDictionary) as? [[String : Any]] ?? []
             
             // Changed from flatMap to compactMap - hopefully will not break anything. flatMap was deprecated
@@ -49,12 +51,14 @@ class HeartRateManager {
                 self.records = records
             }
             
+            // Create a recordDictionary from the records retrieved from userdefaults
             var recordDictionary = [UUID : HeartRateRecord]()
             records.forEach {
                 recordDictionary[$0.uuid] = $0
             }
             self.recordDictionary = recordDictionary
             
+            // Is this actually sending data in the cloud?
             let ckManager = CloudKitManager.shared
             
             ckManager.recordChangedHandler = { record in

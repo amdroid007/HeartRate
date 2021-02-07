@@ -28,8 +28,6 @@
 		FBA2D6911DBF9BD400728078 /* WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = FBA2D6751DBF9BD300728078 /* WatchKit App.app */; };
 		FBA2D6A51DBF9C4900728078 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FBA2D69A1DBF9C4900728078 /* LICENSE */; };
 		FBA2D6A61DBF9C4900728078 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FBA2D69A1DBF9C4900728078 /* LICENSE */; };
-		FBA2D6A71DBF9C4900728078 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = FBA2D69B1DBF9C4900728078 /* README.md */; };
-		FBA2D6A81DBF9C4900728078 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = FBA2D69B1DBF9C4900728078 /* README.md */; };
 		FBA2D6A91DBF9C4900728078 /* YOBarChartImage.m in Sources */ = {isa = PBXBuildFile; fileRef = FBA2D69F1DBF9C4900728078 /* YOBarChartImage.m */; };
 		FBA2D6AA1DBF9C4900728078 /* YOBarChartImage.m in Sources */ = {isa = PBXBuildFile; fileRef = FBA2D69F1DBF9C4900728078 /* YOBarChartImage.m */; };
 		FBA2D6AB1DBF9C4900728078 /* YODonutChartImage.m in Sources */ = {isa = PBXBuildFile; fileRef = FBA2D6A21DBF9C4900728078 /* YODonutChartImage.m */; };
@@ -423,7 +421,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = Jonny;
 				TargetAttributes = {
 					FB3068E21DD1A91000F0BE5C = {
@@ -435,6 +433,7 @@
 					FBA2D60C1DBF9B7300728078 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = AN92UK63A8;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -459,6 +458,7 @@
 					FBA2D6801DBF9BD300728078 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = AN92UK63A8;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.HealthKit.watchos = {
@@ -470,10 +470,9 @@
 			};
 			buildConfigurationList = FBA2D6081DBF9B7300728078 /* Build configuration list for PBXProject "HeartRate" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -542,7 +541,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBA2D6A71DBF9C4900728078 /* README.md in Sources */,
 				FBA2D6AD1DBF9C4900728078 /* YOLineChartImage.m in Sources */,
 				FBA2D6B01DBF9C5700728078 /* WatchConnectivityConstants.swift in Sources */,
 				FB1CFF2F1DD00FD10018BD87 /* HeartRateManager.swift in Sources */,
@@ -569,7 +567,6 @@
 				FBA2D6BD1DBF9C9600728078 /* WorkoutManager.swift in Sources */,
 				FBA2D6871DBF9BD400728078 /* InterfaceController.swift in Sources */,
 				FBA2D6B11DBF9C5700728078 /* WatchConnectivityConstants.swift in Sources */,
-				FBA2D6A81DBF9C4900728078 /* README.md in Sources */,
 				FBA2D68B1DBF9BD400728078 /* ComplicationController.swift in Sources */,
 				FBA2D6C81DC054E200728078 /* WatchConnectivityManager.swift in Sources */,
 				FBA2D6AE1DBF9C4900728078 /* YOLineChartImage.m in Sources */,
@@ -656,20 +653,29 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -708,20 +714,29 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -760,7 +775,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.smartrfsolutions.HeartRate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = HeartRate/BridgeHeader.h;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -775,7 +790,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.smartrfsolutions.HeartRate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = HeartRate/BridgeHeader.h;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -792,7 +807,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = HeartRate/BridgeHeader.h;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 3.0;
 			};
@@ -811,7 +826,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = HeartRate/BridgeHeader.h;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 3.0;
 			};

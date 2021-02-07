@@ -2,6 +2,9 @@
 //  CloudKitManager.swift
 //  CloudKitTest
 //
+//  Wow you need to do all this just to save some data in the cloud??
+//  Not sure if I should keep it or try to get rid of all cloudkit stuff
+//
 //  Created by Jonny on 11/6/16.
 //  Copyright © 2016 Jonny. All rights reserved.
 //
@@ -21,7 +24,7 @@ extension HeartRateRecord {
     
     var ckRecord: CKRecord {
         
-        let recordID = CKRecordID(recordName: uuid.uuidString, zoneID: CloudKitManager.customZoneID)
+        let recordID = CKRecord.ID(recordName: uuid.uuidString, zoneID: CloudKitManager.customZoneID)
         let record = CKRecord(recordType: "HeartRate", recordID: recordID)
         record["intergerValue"] = intergerValue as CKRecordValue
         record["recordDate"] = recordDate as CKRecordValue
@@ -38,7 +41,7 @@ class CloudKitManager {
     static let shared = CloudKitManager()
     
     /// The zond ID is useful when you configure a CKRecord.
-    static let customZoneID = CKRecordZoneID(zoneName: "HeartRate", ownerName: CKCurrentUserDefaultName)
+    static let customZoneID = CKRecordZone.ID(zoneName: "HeartRate", ownerName: CKCurrentUserDefaultName)
     
     private let privateDatabase = CKContainer.default().privateCloudDatabase
     
@@ -68,9 +71,9 @@ class CloudKitManager {
         return []
     }()
     
-    private lazy var pendingRecordIDsToDelete: [CKRecordID] = {
+    private lazy var pendingRecordIDsToDelete: [CKRecord.ID] = {
         if let data = UserDefaults.standard.data(forKey: Key.pendingRecordIDsToDelete) {
-            return NSKeyedUnarchiver.unarchiveObject(with: data) as? [CKRecordID] ?? []
+            return NSKeyedUnarchiver.unarchiveObject(with: data) as? [CKRecord.ID] ?? []
         }
         return []
     }()
@@ -87,10 +90,10 @@ class CloudKitManager {
         }
     }
     
-    private var savedZoneIDs: [CKRecordZoneID] {
+    private var savedZoneIDs: [CKRecordZone.ID] {
         get {
             if let data = UserDefaults.standard.data(forKey: Key.savedZoneIDs) {
-                return NSKeyedUnarchiver.unarchiveObject(with: data) as? [CKRecordZoneID] ?? []
+                return NSKeyedUnarchiver.unarchiveObject(with: data) as? [CKRecordZone.ID] ?? []
             } else {
                 return []
             }
@@ -130,10 +133,10 @@ class CloudKitManager {
         }
     }
     
-    private var recordZoneChangeTokens: [CKRecordZoneID : CKServerChangeToken] {
+    private var recordZoneChangeTokens: [CKRecordZone.ID : CKServerChangeToken] {
         get {
             if let data = UserDefaults.standard.data(forKey: Key.recordZoneChangeTokens) {
-                return NSKeyedUnarchiver.unarchiveObject(with: data) as? [CKRecordZoneID : CKServerChangeToken] ?? [:]
+                return NSKeyedUnarchiver.unarchiveObject(with: data) as? [CKRecordZone.ID : CKServerChangeToken] ?? [:]
             } else {
                 return [:]
             }
@@ -146,10 +149,10 @@ class CloudKitManager {
     }
     
     // Do not set nil to this property.
-    private var userRecordID: CKRecordID? {
+    private var userRecordID: CKRecord.ID? {
         get {
             if let idData = UserDefaults.standard.value(forKey: Key.userRecordID) as? Data {
-                return NSKeyedUnarchiver.unarchiveObject(with: idData) as? CKRecordID ?? nil
+                return NSKeyedUnarchiver.unarchiveObject(with: idData) as? CKRecord.ID ?? nil
             }
             return nil
         }
@@ -210,7 +213,7 @@ class CloudKitManager {
         
         let subscription = CKDatabaseSubscription(subscriptionID: "shared-changes")
         
-        let notificationInfo = CKNotificationInfo()
+        let notificationInfo = CKSubscription.NotificationInfo()
         // When this property is true, the server includes the content-available flag in the push notification’s payload. That flag causes the system to wake or launch an app that is not currently running. The app is then given background execution time to download any data related to the push notification, such as the set of records that changed. If the app is already running in the foreground, the inclusion of this flag has no additional effect and the notification is delivered to the app delegate for processing as usual.
         notificationInfo.shouldSendContentAvailable = true
         
@@ -295,18 +298,18 @@ class CloudKitManager {
     }
     
     var recordChangedHandler: ((CKRecord) -> Void)?
-    var recordWithIDWasDeletedHandler: ((CKRecordID) -> Void)?
+    var recordWithIDWasDeletedHandler: ((CKRecord.ID) -> Void)?
     var recordChangesCompletionHandler: (() -> Void)?
     
-    private func fetchRecordZoneChanges(with zoneIDs: [CKRecordZoneID], previousRetryAfterSeconds: TimeInterval = 0) {
+    private func fetchRecordZoneChanges(with zoneIDs: [CKRecordZone.ID], previousRetryAfterSeconds: TimeInterval = 0) {
         print(#function, zoneIDs, previousRetryAfterSeconds)
         
         let recordZoneChangeTokens = self.recordZoneChangeTokens
         
-        var optionsByRecordZoneID = [CKRecordZoneID : CKFetchRecordZoneChangesOptions]()
+        var optionsByRecordZoneID = [CKRecordZone.ID : CKFetchRecordZoneChangesOperation.ZoneOptions]()
         
         for zoneID in zoneIDs {
-            let options = CKFetchRecordZoneChangesOptions()
+            let options = CKFetchRecordZoneChangesOperation.ZoneOptions()
             options.previousServerChangeToken = recordZoneChangeTokens[zoneID]
             optionsByRecordZoneID[zoneID] = options
         }
@@ -333,7 +336,7 @@ class CloudKitManager {
             self.recordChangesCompletionHandler?()
         }
         
-        func handleTokenExpiredErrorIfHave(error: CKError, zoneID: CKRecordZoneID?) -> Bool {
+        func handleTokenExpiredErrorIfHave(error: CKError, zoneID: CKRecordZone.ID?) -> Bool {
             
             var didHandle = false
             
@@ -353,7 +356,7 @@ class CloudKitManager {
             }
             // error.partialErrorsByItemID is not usable, confirmed (always returns nil)
             // must cast to [CKRecordID : NSError] first. cast [CKRecordID : CKError] or [CKRecordID : Error] returns nil
-            else if let errorDictionary = error.userInfo[CKPartialErrorsByItemIDKey] as? [CKRecordZoneID : NSError] {
+            else if let errorDictionary = error.userInfo[CKPartialErrorsByItemIDKey] as? [CKRecordZone.ID : NSError] {
                 for (recordID, error) in errorDictionary {
                     if let error = error as? CKError, error.code == .changeTokenExpired {
                         // revoke tokens and fetch fully changes.
@@ -428,14 +431,14 @@ class CloudKitManager {
         if records.isEmpty {
             return records
         }
-        var recordsDictionary = [CKRecordID : CKRecord]()
+        var recordsDictionary = [CKRecord.ID : CKRecord]()
         records.forEach {
             recordsDictionary[$0.recordID] = $0
         }
         return Array(recordsDictionary.values)
     }
     
-    private func removingDuplicateRecordIDs(from recordIDs: [CKRecordID]) -> [CKRecordID] {
+    private func removingDuplicateRecordIDs(from recordIDs: [CKRecord.ID]) -> [CKRecord.ID] {
         return Array(Set(recordIDs))
         
 //        if recordIDs.isEmpty {
@@ -456,7 +459,7 @@ class CloudKitManager {
         }
     }
     
-    func deleteRecords(withRecordIDs recordIDsToDelete: [CKRecordID], completion: ((Bool) -> Void)? = nil) {
+    func deleteRecords(withRecordIDs recordIDsToDelete: [CKRecord.ID], completion: ((Bool) -> Void)? = nil) {
         backgroundQueue.async {
             let allPendingRecordIDsToDelete = self.removingDuplicateRecordIDs(from: self.pendingRecordIDsToDelete + recordIDsToDelete)
             self.pendingRecordIDsToDelete = allPendingRecordIDsToDelete
@@ -469,7 +472,7 @@ class CloudKitManager {
     /// If excute a CKModifyRecordsOperation with more than 400 record modifications, system will return a CKErrorLimitExceeded error.
     private let maximumRecordModificationsLimit = 400
     
-    private func modifyRecords(recordsToSave: [CKRecord], recordIDsToDelete: [CKRecordID], previousRetryAfterSeconds: TimeInterval = 0, completion: ((Bool) -> Void)? = nil) {
+    private func modifyRecords(recordsToSave: [CKRecord], recordIDsToDelete: [CKRecord.ID], previousRetryAfterSeconds: TimeInterval = 0, completion: ((Bool) -> Void)? = nil) {
         
         guard !recordsToSave.isEmpty || !recordIDsToDelete.isEmpty else {
             completion?(true)
@@ -512,8 +515,8 @@ class CloudKitManager {
                     
                     // error.partialErrorsByItemID is not usable, confirmed (always returns nil)
                     // must cast to [CKRecordID : NSError] first. cast [CKRecordID : CKError] or [CKRecordID : Error] returns nil
-                    if let errorDictionary = error.userInfo[CKPartialErrorsByItemIDKey] as? [CKRecordID : NSError] {
-                        var unrecoverableRecordIDsDictionary = [CKRecordID : Bool]()
+                    if let errorDictionary = error.userInfo[CKPartialErrorsByItemIDKey] as? [CKRecord.ID : NSError] {
+                        var unrecoverableRecordIDsDictionary = [CKRecord.ID : Bool]()
                         for (recordID, error) in errorDictionary {
                             if let error = error as? CKError {
                                 if error.code == .zoneNotFound {
@@ -566,14 +569,14 @@ class CloudKitManager {
                 }
                 
                 if let savedRecords = savedRecords, !savedRecords.isEmpty {
-                    var savedRecordIDsDictionary = [CKRecordID : Bool]()
+                    var savedRecordIDsDictionary = [CKRecord.ID : Bool]()
                     savedRecords.forEach {
                         savedRecordIDsDictionary[$0.recordID] = true
                     }
                     self.pendingRecordsToSave = self.pendingRecordsToSave.filter { savedRecordIDsDictionary[$0.recordID] == nil }
                 }
                 if let deletedRecordIDs = deletedRecordIDs, !deletedRecordIDs.isEmpty {
-                    var deletedRecordIDsDictionary = [CKRecordID: Bool]()
+                    var deletedRecordIDsDictionary = [CKRecord.ID: Bool]()
                     deletedRecordIDs.forEach {
                         deletedRecordIDsDictionary[$0] = true
                     }
@@ -590,7 +593,7 @@ class CloudKitManager {
     }
   
     /// Handler return nil if create failed.
-    private func createZoneIfNeeded(withZoneID zoneID: CKRecordZoneID, completion: ((CKRecordZoneID, Bool) -> Void)? = nil) {
+    private func createZoneIfNeeded(withZoneID zoneID: CKRecordZone.ID, completion: ((CKRecordZone.ID, Bool) -> Void)? = nil) {
         print(#function)
         
         guard savedZoneIDs.first(where: { $0 == zoneID }) == nil else {
@@ -626,7 +629,7 @@ class CloudKitManager {
         privateDatabase.add(fetchRecordZonesOperation)
     }
     
-    private func createZone(withZoneID zoneID: CKRecordZoneID, previousRetryAfterSeconds: TimeInterval = 0, completion: ((CKRecordZoneID, Bool) -> Void)? = nil) {
+    private func createZone(withZoneID zoneID: CKRecordZone.ID, previousRetryAfterSeconds: TimeInterval = 0, completion: ((CKRecordZone.ID, Bool) -> Void)? = nil) {
         
         print(#function, "savedZoneIDs:", savedZoneIDs)
         
@@ -671,9 +674,9 @@ class CloudKitManager {
         
         let center = NotificationCenter.default
         center.addObserver(self, selector: #selector(updateUserRecordID), name: .CKAccountChanged, object: nil)
-        center.addObserver(self, selector: #selector(applicationDidBecomeActive), name: .UIApplicationDidBecomeActive, object: nil)
-        center.addObserver(self, selector: #selector(applicationWillResignActive), name: .UIApplicationWillResignActive, object: nil)
-        center.addObserver(self, selector: #selector(applicationDidEnterBackground), name: .UIApplicationDidEnterBackground, object: nil)
+        center.addObserver(self, selector: #selector(applicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+        center.addObserver(self, selector: #selector(applicationWillResignActive), name: UIApplication.willResignActiveNotification, object: nil)
+        center.addObserver(self, selector: #selector(applicationDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
     
     @objc private func updateUserRecordID() {
@@ -711,11 +714,16 @@ class CloudKitManager {
         
         var backgroundTaskIdentifier: UIBackgroundTaskIdentifier!
         backgroundTaskIdentifier = UIApplication.shared.beginBackgroundTask {
-            UIApplication.shared.endBackgroundTask(backgroundTaskIdentifier)
+            UIApplication.shared.endBackgroundTask(convertToUIBackgroundTaskIdentifier(backgroundTaskIdentifier!.rawValue))
         }
         modifyRecords(recordsToSave: pendingRecordsToSave, recordIDsToDelete: pendingRecordIDsToDelete) { _ in
             self.saveContentsLocally()
-            UIApplication.shared.endBackgroundTask(backgroundTaskIdentifier)
+            UIApplication.shared.endBackgroundTask(convertToUIBackgroundTaskIdentifier(backgroundTaskIdentifier!.rawValue))
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIBackgroundTaskIdentifier(_ input: Int) -> UIBackgroundTaskIdentifier {
+	return UIBackgroundTaskIdentifier(rawValue: input)
 }

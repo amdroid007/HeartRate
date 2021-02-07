@@ -1,7 +1,7 @@
 //
 //  MonitorViewController.swift
 //  View Controller that shows the history of heart rate messages from the watch,
-//  including a simple chart showing the last x messages
+//  including a simple chart showing the last 10 readings
 //
 //  Created by Jonny on 10/25/16.
 //  Updating for Blockchain Healthcare project by Jit - started Feb 1, 2021
@@ -201,6 +201,7 @@ class MonitorViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // MARK: - UI Updates
     
+    // Update the chart
     private func updateChartIfNeeded() {
         
         let heartRateRecords = heartRateManager.records

@@ -62,7 +62,7 @@ class WatchConnectivityManager: NSObject, WCSessionDelegate {
     }
     
     fileprivate func removeMessageHandler(_ messageHandler: MessageHandler) {
-        if let index = messageHandlers.index(of: messageHandler) {
+        if let index = messageHandlers.firstIndex(of: messageHandler) {
             messageHandlers.remove(at: index)
         }
     }
