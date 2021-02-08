@@ -20,12 +20,12 @@
 		FBA2D61B1DBF9B7300728078 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBA2D6191DBF9B7300728078 /* LaunchScreen.storyboard */; };
 		FBA2D6791DBF9BD300728078 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBA2D6771DBF9BD300728078 /* Interface.storyboard */; };
 		FBA2D67B1DBF9BD300728078 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBA2D67A1DBF9BD300728078 /* Assets.xcassets */; };
-		FBA2D6821DBF9BD400728078 /* WatchKit App Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FBA2D6811DBF9BD300728078 /* WatchKit App Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FBA2D6821DBF9BD400728078 /* HealthMonitor Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FBA2D6811DBF9BD300728078 /* HealthMonitor Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FBA2D6871DBF9BD400728078 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA2D6861DBF9BD400728078 /* InterfaceController.swift */; };
 		FBA2D6891DBF9BD400728078 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA2D6881DBF9BD400728078 /* ExtensionDelegate.swift */; };
 		FBA2D68B1DBF9BD400728078 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA2D68A1DBF9BD400728078 /* ComplicationController.swift */; };
 		FBA2D68D1DBF9BD400728078 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBA2D68C1DBF9BD400728078 /* Assets.xcassets */; };
-		FBA2D6911DBF9BD400728078 /* WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = FBA2D6751DBF9BD300728078 /* WatchKit App.app */; };
+		FBA2D6911DBF9BD400728078 /* HealthMonitor.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = FBA2D6751DBF9BD300728078 /* HealthMonitor.app */; };
 		FBA2D6A51DBF9C4900728078 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FBA2D69A1DBF9C4900728078 /* LICENSE */; };
 		FBA2D6A61DBF9C4900728078 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FBA2D69A1DBF9C4900728078 /* LICENSE */; };
 		FBA2D6A91DBF9C4900728078 /* YOBarChartImage.m in Sources */ = {isa = PBXBuildFile; fileRef = FBA2D69F1DBF9C4900728078 /* YOBarChartImage.m */; };
@@ -74,7 +74,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				FBA2D6911DBF9BD400728078 /* WatchKit App.app in Embed Watch Content */,
+				FBA2D6911DBF9BD400728078 /* HealthMonitor.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,7 +85,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				FBA2D6821DBF9BD400728078 /* WatchKit App Extension.appex in Embed App Extensions */,
+				FBA2D6821DBF9BD400728078 /* HealthMonitor Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,17 +105,17 @@
 		FB3068E31DD1A91000F0BE5C /* HeartRateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeartRateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB3068E51DD1A91000F0BE5C /* HeartRateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateUITests.swift; sourceTree = "<group>"; };
 		FB3068E71DD1A91000F0BE5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FBA2D60D1DBF9B7300728078 /* HeartRate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeartRate.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBA2D60D1DBF9B7300728078 /* HealthMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBA2D6101DBF9B7300728078 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBA2D6151DBF9B7300728078 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FBA2D6171DBF9B7300728078 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FBA2D61A1DBF9B7300728078 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FBA2D61C1DBF9B7300728078 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FBA2D6751DBF9BD300728078 /* WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBA2D6751DBF9BD300728078 /* HealthMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBA2D6781DBF9BD300728078 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		FBA2D67A1DBF9BD300728078 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FBA2D67C1DBF9BD300728078 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FBA2D6811DBF9BD300728078 /* WatchKit App Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WatchKit App Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBA2D6811DBF9BD300728078 /* HealthMonitor Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "HealthMonitor Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBA2D6861DBF9BD400728078 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
 		FBA2D6881DBF9BD400728078 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		FBA2D68A1DBF9BD400728078 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
@@ -255,9 +255,9 @@
 		FBA2D60E1DBF9B7300728078 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FBA2D60D1DBF9B7300728078 /* HeartRate.app */,
-				FBA2D6751DBF9BD300728078 /* WatchKit App.app */,
-				FBA2D6811DBF9BD300728078 /* WatchKit App Extension.appex */,
+				FBA2D60D1DBF9B7300728078 /* HealthMonitor.app */,
+				FBA2D6751DBF9BD300728078 /* HealthMonitor.app */,
+				FBA2D6811DBF9BD300728078 /* HealthMonitor Extension.appex */,
 				FB3068E31DD1A91000F0BE5C /* HeartRateUITests.xctest */,
 			);
 			name = Products;
@@ -361,9 +361,9 @@
 			productReference = FB3068E31DD1A91000F0BE5C /* HeartRateUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		FBA2D60C1DBF9B7300728078 /* HeartRate */ = {
+		FBA2D60C1DBF9B7300728078 /* HealthMonitor */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FBA2D61F1DBF9B7300728078 /* Build configuration list for PBXNativeTarget "HeartRate" */;
+			buildConfigurationList = FBA2D61F1DBF9B7300728078 /* Build configuration list for PBXNativeTarget "HealthMonitor" */;
 			buildPhases = (
 				FBA2D6091DBF9B7300728078 /* Sources */,
 				FBA2D60A1DBF9B7300728078 /* Frameworks */,
@@ -375,14 +375,14 @@
 			dependencies = (
 				FBA2D6901DBF9BD400728078 /* PBXTargetDependency */,
 			);
-			name = HeartRate;
+			name = HealthMonitor;
 			productName = HeartRate;
-			productReference = FBA2D60D1DBF9B7300728078 /* HeartRate.app */;
+			productReference = FBA2D60D1DBF9B7300728078 /* HealthMonitor.app */;
 			productType = "com.apple.product-type.application";
 		};
-		FBA2D6741DBF9BD300728078 /* WatchKit App */ = {
+		FBA2D6741DBF9BD300728078 /* HealthMonitor WatchKit App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FBA2D6961DBF9BD400728078 /* Build configuration list for PBXNativeTarget "WatchKit App" */;
+			buildConfigurationList = FBA2D6961DBF9BD400728078 /* Build configuration list for PBXNativeTarget "HealthMonitor WatchKit App" */;
 			buildPhases = (
 				FBA2D6731DBF9BD300728078 /* Resources */,
 				FBA2D6951DBF9BD400728078 /* Embed App Extensions */,
@@ -392,9 +392,9 @@
 			dependencies = (
 				FBA2D6841DBF9BD400728078 /* PBXTargetDependency */,
 			);
-			name = "WatchKit App";
+			name = "HealthMonitor WatchKit App";
 			productName = "WatchKit App";
-			productReference = FBA2D6751DBF9BD300728078 /* WatchKit App.app */;
+			productReference = FBA2D6751DBF9BD300728078 /* HealthMonitor.app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
 		FBA2D6801DBF9BD300728078 /* WatchKit App Extension */ = {
@@ -411,7 +411,7 @@
 			);
 			name = "WatchKit App Extension";
 			productName = "WatchKit App Extension";
-			productReference = FBA2D6811DBF9BD300728078 /* WatchKit App Extension.appex */;
+			productReference = FBA2D6811DBF9BD300728078 /* HealthMonitor Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
 /* End PBXNativeTarget section */
@@ -482,8 +482,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FBA2D60C1DBF9B7300728078 /* HeartRate */,
-				FBA2D6741DBF9BD300728078 /* WatchKit App */,
+				FBA2D60C1DBF9B7300728078 /* HealthMonitor */,
+				FBA2D6741DBF9BD300728078 /* HealthMonitor WatchKit App */,
 				FBA2D6801DBF9BD300728078 /* WatchKit App Extension */,
 				FB3068E21DD1A91000F0BE5C /* HeartRateUITests */,
 			);
@@ -579,7 +579,7 @@
 /* Begin PBXTargetDependency section */
 		FB3068E91DD1A91000F0BE5C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FBA2D60C1DBF9B7300728078 /* HeartRate */;
+			target = FBA2D60C1DBF9B7300728078 /* HealthMonitor */;
 			targetProxy = FB3068E81DD1A91000F0BE5C /* PBXContainerItemProxy */;
 		};
 		FBA2D6841DBF9BD400728078 /* PBXTargetDependency */ = {
@@ -589,7 +589,7 @@
 		};
 		FBA2D6901DBF9BD400728078 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FBA2D6741DBF9BD300728078 /* WatchKit App */;
+			target = FBA2D6741DBF9BD300728078 /* HealthMonitor WatchKit App */;
 			targetProxy = FBA2D68F1DBF9BD400728078 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -774,7 +774,7 @@
 				INFOPLIST_FILE = HeartRate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.smartrfsolutions.HeartRate;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = HealthMonitor;
 				SWIFT_OBJC_BRIDGING_HEADER = HeartRate/BridgeHeader.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -790,7 +790,7 @@
 				INFOPLIST_FILE = HeartRate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.smartrfsolutions.HeartRate;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = HealthMonitor;
 				SWIFT_OBJC_BRIDGING_HEADER = HeartRate/BridgeHeader.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -806,7 +806,7 @@
 				INFOPLIST_FILE = "WatchKit App Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.smartrfsolutions.HeartRate.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
+				PRODUCT_NAME = "HealthMonitor Extension";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = HeartRate/BridgeHeader.h;
@@ -825,7 +825,7 @@
 				INFOPLIST_FILE = "WatchKit App Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.smartrfsolutions.HeartRate.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
+				PRODUCT_NAME = "HealthMonitor Extension";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = HeartRate/BridgeHeader.h;
@@ -844,7 +844,7 @@
 				IBSC_MODULE = WatchKit_App_Extension;
 				INFOPLIST_FILE = "WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.smartrfsolutions.HeartRate.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = HealthMonitor;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
@@ -862,7 +862,7 @@
 				IBSC_MODULE = WatchKit_App_Extension;
 				INFOPLIST_FILE = "WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.smartrfsolutions.HeartRate.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = HealthMonitor;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
@@ -892,7 +892,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FBA2D61F1DBF9B7300728078 /* Build configuration list for PBXNativeTarget "HeartRate" */ = {
+		FBA2D61F1DBF9B7300728078 /* Build configuration list for PBXNativeTarget "HealthMonitor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FBA2D6201DBF9B7300728078 /* Debug */,
@@ -910,7 +910,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FBA2D6961DBF9BD400728078 /* Build configuration list for PBXNativeTarget "WatchKit App" */ = {
+		FBA2D6961DBF9BD400728078 /* Build configuration list for PBXNativeTarget "HealthMonitor WatchKit App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FBA2D6971DBF9BD400728078 /* Debug */,
