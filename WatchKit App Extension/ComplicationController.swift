@@ -168,20 +168,23 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             let template = CLKComplicationTemplateUtilitarianSmallFlat()
             template.textProvider = CLKSimpleTextProvider(text: heartRateText + unitText, shortText: heartRateText, accessibilityLabel: fullText)
             
-            let imageProvider = CLKImageProvider(onePieceImage: UIImage(named: "Utilitarian")!) // ComplicationControllerUtilitarianHeart
-            imageProvider.accessibilityLabel = fullText
-            template.imageProvider = imageProvider
-            
+            if let utilimage = UIImage(named: "Utilitarian") {
+                let imageProvider = CLKImageProvider(onePieceImage: utilimage)
+                // ComplicationControllerUtilitarianHeart
+                imageProvider.accessibilityLabel = fullText
+                template.imageProvider = imageProvider
+            }
             complicationTemplate = template
             
         case .utilitarianLarge:
             let template = CLKComplicationTemplateUtilitarianLargeFlat()
             template.textProvider = CLKSimpleTextProvider(text: heartRateText + unitText, shortText: heartRateText, accessibilityLabel: fullText)
             
-            let imageProvider = CLKImageProvider(onePieceImage: UIImage(named: "Utilitarian")!)
-            imageProvider.accessibilityLabel = fullText
-            template.imageProvider = imageProvider
-            
+            if let utilimage = UIImage(named: "Utilitarian") {
+                let imageProvider = CLKImageProvider(onePieceImage: utilimage)
+                imageProvider.accessibilityLabel = fullText
+                template.imageProvider = imageProvider
+            }
             complicationTemplate = template
             
         case .circularSmall:
