@@ -209,6 +209,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             fallthrough
         case .graphicRectangular:
             fallthrough
+        case .graphicExtraLarge:
+            fallthrough
         case .utilitarianSmallFlat:
             let template = CLKComplicationTemplateUtilitarianSmallFlat()
             template.textProvider = CLKSimpleTextProvider(text: heartRateText + unitText, shortText: heartRateText, accessibilityLabel: fullText)
