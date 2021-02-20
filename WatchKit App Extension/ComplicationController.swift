@@ -209,15 +209,13 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             fallthrough
         case .graphicRectangular:
             fallthrough
-        case .graphicExtraLarge:
-            fallthrough
         case .utilitarianSmallFlat:
+            fallthrough
+        @unknown default:
             let template = CLKComplicationTemplateUtilitarianSmallFlat()
             template.textProvider = CLKSimpleTextProvider(text: heartRateText + unitText, shortText: heartRateText, accessibilityLabel: fullText)
             
             complicationTemplate = template
-        @unknown default:
-            fatalError()
         }
         
         // use the Health app's tint color
