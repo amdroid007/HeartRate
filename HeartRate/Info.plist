@@ -17,13 +17,13 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-    <key>NSHealthShareUsageDescription</key>
-    <string>Need data for showing heartrate if not we are not going to be able to do this</string>
-    <key>NSHealthUpdateUsageDescription</key>
-    <string>We need to save your health progress to your Apple Watch.</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Need data for showing heartrate if not we are not going to be able to do this</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>We need to save your health progress to your Apple Watch.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

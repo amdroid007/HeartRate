@@ -769,6 +769,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HeartRate/HeartRate.entitlements;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = AN92UK63A8;
 				INFOPLIST_FILE = HeartRate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -776,6 +777,7 @@
 				PRODUCT_NAME = "Health Monitor";
 				SWIFT_OBJC_BRIDGING_HEADER = HeartRate/BridgeHeader.h;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -784,6 +786,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HeartRate/HeartRate.entitlements;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = AN92UK63A8;
 				INFOPLIST_FILE = HeartRate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -791,6 +794,7 @@
 				PRODUCT_NAME = "Health Monitor";
 				SWIFT_OBJC_BRIDGING_HEADER = HeartRate/BridgeHeader.h;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -837,6 +841,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = AN92UK63A8;
 				IBSC_MODULE = WatchKit_App_Extension;
 				INFOPLIST_FILE = "WatchKit App/Info.plist";
@@ -855,6 +860,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = AN92UK63A8;
 				IBSC_MODULE = WatchKit_App_Extension;
 				INFOPLIST_FILE = "WatchKit App/Info.plist";
