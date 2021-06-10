@@ -1,6 +1,6 @@
 //
 //  HeartRateManager.swift
-//  HeartRate Data storage class - gets the data from HealthStore and stores it (where? iCloud?)
+//  HeartRate Data storage class - gets the data from HealthStore and stores it in preferences
 //
 //  Created by Jonny on 11/7/16.
 //  Copyright © 2016 Jonny. All rights reserved.
@@ -57,30 +57,6 @@ class HeartRateManager {
                 recordDictionary[$0.uuid] = $0
             }
             self.recordDictionary = recordDictionary
-            
-            // Is this actually sending data in the cloud?
-            let ckManager = CloudKitManager.shared
-            
-            ckManager.recordChangedHandler = { record in
-                print("recordChangedHandler")
-                guard let heartRateRecord = HeartRateRecord(ckRecord: record) else { return }
-                self.recordDictionary[heartRateRecord.uuid] = heartRateRecord
-            }
-            
-            ckManager.recordWithIDWasDeletedHandler = { recordID in
-                print("recordWithIDWasDeletedHandler")
-                guard let uuid = UUID(uuidString: recordID.recordName) else { return }
-                self.recordDictionary[uuid] = nil
-            }
-            
-            ckManager.recordChangesCompletionHandler = {
-                print("recordChangesCompletionHandler")
-                
-                let newRecords = self.recordDictionary.values.sorted { $0.recordDate > $1.recordDate }
-                DispatchQueue.main.async {
-                    self.records = newRecords
-                }
-            }
         }
     }
     
@@ -88,7 +64,6 @@ class HeartRateManager {
         
         records.insert(contentsOf: heartRates, at: 0)
         heartRates.forEach { recordDictionary[$0.uuid] = $0 }
-        CloudKitManager.shared.saveRecords(heartRates.map { $0.ckRecord })
         
         asyncSaveRecordsLocally()
     }
@@ -98,14 +73,11 @@ class HeartRateManager {
         heartRates.forEach { recordDictionary[$0.uuid] = nil }
         records = recordDictionary.values.sorted { $0.recordDate > $1.recordDate }
         
-        CloudKitManager.shared.deleteRecords(withRecordIDs: heartRates.map { $0.ckRecord.recordID })
         asyncSaveRecordsLocally()
     }
     
     func deleteAllRecords() {
-        
-        CloudKitManager.shared.deleteRecords(withRecordIDs: recordDictionary.values.map { $0.ckRecord.recordID })
-        
+                
         recordDictionary.removeAll()
         records.removeAll()
         

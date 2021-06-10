@@ -16,8 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        // This is likely for Cloudkit implementation so we may not need this
+        // Override point for customization after application launch
         application.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         application.registerForRemoteNotifications()
         
@@ -31,16 +30,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             HKHealthStore().requestAuthorization(toShare: nil, read: typesToRead) { success, error in }
         }
-        
-        // force init the manager at app startup.
-        _ = CloudKitManager.shared
-        
+                
         window?.makeKeyAndVisible()
         
         return true
     }
     
-    // receive CloudKit push notification
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print(#function)
         self.application(application, performFetchWithCompletionHandler: completionHandler)
@@ -58,19 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 didCompleted = true
                 completionHandler(.noData)
             }
-        }
-        
-        CloudKitManager.shared.fetchDatabaseChanges {
-            print("handleRemoteNotification completed")
-            
-            // give async process 2 more seconds to complete tasks
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                if !didCompleted {
-                    didCompleted = true
-                    completionHandler(.newData)
-                }
-            }
-        }
+        }        
     }
     
     func applicationShouldRequestHealthAuthorization(_ application: UIApplication) {

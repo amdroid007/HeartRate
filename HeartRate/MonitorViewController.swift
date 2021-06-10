@@ -12,6 +12,13 @@ import UIKit
 
 class MonitorViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    final let pantherchainbaseurl = "https://pantherchain.fiu.edu/PantherChain/"
+    final let keysig = "88cd7";
+
+    var avgheart = 0
+    var numreadings = 0
+    var starttick = 0
+
     // Enumerated datatype to store the different monitor states
     enum MonitorState {
         case notStarted, launching, running, errorOccur(Error)
@@ -56,7 +63,7 @@ class MonitorViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
-    @IBOutlet weak var trashButtonItem: UIBarButtonItem!
+    @IBOutlet weak var actionButtonItem: UIBarButtonItem!
     
     @IBOutlet private var startStopBarButtonItem: UIBarButtonItem!
     
@@ -139,7 +146,7 @@ class MonitorViewController: UIViewController, UITableViewDataSource, UITableVie
         heartRateManager.recordsUpdateHandler = { records in
             self.tableView.reloadData()
             self.updateChartIfNeeded()
-            self.trashButtonItem.isEnabled = !records.isEmpty
+            self.actionButtonItem.isEnabled = !records.isEmpty
         }
         
         // First load - update chart - maybe this will show where data is stored (?)
@@ -174,8 +181,6 @@ class MonitorViewController: UIViewController, UITableViewDataSource, UITableVie
                 //  self.heartRateRecords.insert(newRecord, at: 0)
                 //  self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
                 //  self.updateChartIfNeeded()
-                                
-                //  CloudKitManager.shared.saveRecords([newRecord.ckRecord])
             }
             else if message[.workoutStop] != nil{
                 self.monitorState = .notStarted
@@ -274,11 +279,11 @@ class MonitorViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // MARK: - Actions
     
-    @IBAction func trashButtonItemDidTap(_ sender: Any) {
+    @IBAction func actionButtonItemDidTap(_ sender: Any) {
         
-        let controller = UIAlertController(title: "Delete All Records", message: "This will delete all your heart rate record from all your device. This cannot be undone.", preferredStyle: .alert)
+        let controller = UIAlertController(title: "Submit workout", message: "This will send your workout to the blockchain and delete the data from your device. This cannot be undone.", preferredStyle: .alert)
         
-        controller.addAction(UIAlertAction(title: "Delete", style: .destructive) { _ in
+        controller.addAction(UIAlertAction(title: "Submit", style: .destructive) { _ in
             self.heartRateManager.deleteAllRecords()
         })
         controller.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

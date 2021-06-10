@@ -10,8 +10,6 @@
 		FB1CFF2D1DD0022E0018BD87 /* TMReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1CFF2C1DD0022E0018BD87 /* TMReachability.m */; };
 		FB1CFF2F1DD00FD10018BD87 /* HeartRateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1CFF2E1DD00FD10018BD87 /* HeartRateManager.swift */; };
 		FB1CFF311DD01E2A0018BD87 /* HeartRateRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1CFF301DD01E2A0018BD87 /* HeartRateRecord.swift */; };
-		FB1CFF331DD0203D0018BD87 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB1CFF321DD0203D0018BD87 /* CloudKit.framework */; };
-		FB1EA2BF1DCFFD1F008CCFFD /* CloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1EA2BE1DCFFD1F008CCFFD /* CloudKitManager.swift */; };
 		FB1EA2C41DCFFF83008CCFFD /* KJYReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1EA2C31DCFFF83008CCFFD /* KJYReachability.swift */; };
 		FB3068E61DD1A91000F0BE5C /* HeartRateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3068E51DD1A91000F0BE5C /* HeartRateUITests.swift */; };
 		FBA2D6111DBF9B7300728078 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA2D6101DBF9B7300728078 /* AppDelegate.swift */; };
@@ -98,8 +96,6 @@
 		FB1CFF2C1DD0022E0018BD87 /* TMReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMReachability.m; sourceTree = "<group>"; };
 		FB1CFF2E1DD00FD10018BD87 /* HeartRateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateManager.swift; sourceTree = "<group>"; };
 		FB1CFF301DD01E2A0018BD87 /* HeartRateRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateRecord.swift; sourceTree = "<group>"; };
-		FB1CFF321DD0203D0018BD87 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		FB1EA2BE1DCFFD1F008CCFFD /* CloudKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitManager.swift; sourceTree = "<group>"; };
 		FB1EA2C31DCFFF83008CCFFD /* KJYReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KJYReachability.swift; sourceTree = "<group>"; };
 		FB1EA2C51DD0001F008CCFFD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		FB3068E31DD1A91000F0BE5C /* HeartRateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeartRateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,7 +149,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB1CFF331DD0203D0018BD87 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,7 +176,6 @@
 			children = (
 				FB1CFF301DD01E2A0018BD87 /* HeartRateRecord.swift */,
 				FB1CFF2E1DD00FD10018BD87 /* HeartRateManager.swift */,
-				FB1EA2BE1DCFFD1F008CCFFD /* CloudKitManager.swift */,
 				FB1EA2C31DCFFF83008CCFFD /* KJYReachability.swift */,
 				FB1CFF2B1DD0022E0018BD87 /* TMReachability.h */,
 				FB1CFF2C1DD0022E0018BD87 /* TMReachability.m */,
@@ -333,7 +327,6 @@
 		FBA2D6BF1DBF9DAA00728078 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FB1CFF321DD0203D0018BD87 /* CloudKit.framework */,
 				FB1EA2C51DD0001F008CCFFD /* SystemConfiguration.framework */,
 				FBA2D6C01DBF9DAA00728078 /* HealthKit.framework */,
 			);
@@ -421,12 +414,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1240;
 				ORGANIZATIONNAME = Jonny;
 				TargetAttributes = {
 					FB3068E21DD1A91000F0BE5C = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = AN92UK63A8;
+						LastSwiftMigration = 1240;
 						ProvisioningStyle = Automatic;
 						TestTargetID = FBA2D60C1DBF9B7300728078;
 					};
@@ -544,7 +538,6 @@
 				FBA2D6AD1DBF9C4900728078 /* YOLineChartImage.m in Sources */,
 				FBA2D6B01DBF9C5700728078 /* WatchConnectivityConstants.swift in Sources */,
 				FB1CFF2F1DD00FD10018BD87 /* HeartRateManager.swift in Sources */,
-				FB1EA2BF1DCFFD1F008CCFFD /* CloudKitManager.swift in Sources */,
 				FB1CFF2D1DD0022E0018BD87 /* TMReachability.m in Sources */,
 				FBA2D6C71DC054E200728078 /* WatchConnectivityManager.swift in Sources */,
 				FBA2D6AB1DBF9C4900728078 /* YODonutChartImage.m in Sources */,
@@ -626,11 +619,11 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = AN92UK63A8;
 				INFOPLIST_FILE = HeartRateUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jonny.HeartRateUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = HeartRate;
 			};
 			name = Debug;
@@ -640,11 +633,11 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = AN92UK63A8;
 				INFOPLIST_FILE = HeartRateUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jonny.HeartRateUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = HeartRate;
 			};
 			name = Release;
@@ -674,6 +667,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -699,7 +693,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -735,6 +729,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -754,7 +749,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
