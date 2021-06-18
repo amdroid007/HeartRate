@@ -68,6 +68,32 @@ class HeartRateManager {
         asyncSaveRecordsLocally()
     }
     
+    func getSummary()->String {
+        if records.count == 0 {
+            return ""
+        }
+        var totalHR = 0
+        var minDate = Date.distantPast
+        var maxDate = Date.distantFuture
+        records.forEach {
+            totalHR += $0.intergerValue
+            if minDate < $0.recordDate {
+                minDate = $0.recordDate
+            }
+            if maxDate > $0.recordDate {
+                maxDate = $0.recordDate
+            }
+        }
+        let avgHR = Float(totalHR) / Float(records.count)
+        let interval = Int(minDate.timeIntervalSince(maxDate))
+        let myFormatter = DateFormatter()
+        myFormatter.dateStyle = .medium
+        myFormatter.timeStyle = .medium
+
+        let wktime = myFormatter.string(from: maxDate)
+        return "\"time\":\"\(wktime)\",\"avgheartrate\":\"\(avgHR)\",\"totaltime\":\"\(interval)\""
+    }
+    
     func delete(_ heartRates: [HeartRateRecord]) {
         
         heartRates.forEach { recordDictionary[$0.uuid] = nil }

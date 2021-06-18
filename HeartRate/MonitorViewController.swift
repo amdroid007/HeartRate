@@ -13,11 +13,14 @@ import UIKit
 class MonitorViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     final let pantherchainbaseurl = "https://pantherchain.fiu.edu/PantherChain/"
-    final let keysig = "88cd7";
+    final let defaultkeysig = "f4dca";
 
     var avgheart = 0
     var numreadings = 0
     var starttick = 0
+    var public_key_value:String?
+    var private_key_value:String?
+    var keysig:String?
 
     // Enumerated datatype to store the different monitor states
     enum MonitorState {
@@ -195,6 +198,32 @@ class MonitorViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         }
         manager.addMessageHandler(messageHandler!)
+        
+        keysig = UserDefaults.standard.string(forKey: "pref_pk")
+        if (keysig == nil) {
+            keysig = defaultkeysig
+        }
+        
+        let url = URL(string: "\(pantherchainbaseurl)getKey?key=\(keysig!)")!
+        let task = URLSession.shared.dataTask(with: url) { (data: Data?, response: URLResponse?, error: Error?) -> Void in
+            // Parse the data in the response and use it
+            guard let data = data, error == nil else { return }
+
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]
+                self.public_key_value = json["publicKey"] as? String ?? nil
+                self.private_key_value = json["privateKey"] as? String ?? nil
+                DispatchQueue.main.async {
+                    self.showToast(message: "Pub key: \(self.public_key_value ?? "NO PUBLIC KEY")", seconds: 1.0)
+                }
+            } catch let error as NSError {
+                print(error)
+                DispatchQueue.main.async {
+                    self.showToast(message: "Invalid PK signature - pleas see settings", seconds: 1.0)
+                }
+            }
+        }
+        task.resume()
     }
     
     // I have never used this one before - what does this do?
@@ -284,6 +313,33 @@ class MonitorViewController: UIViewController, UITableViewDataSource, UITableVie
         let controller = UIAlertController(title: "Submit workout", message: "This will send your workout to the blockchain and delete the data from your device. This cannot be undone.", preferredStyle: .alert)
         
         controller.addAction(UIAlertAction(title: "Submit", style: .destructive) { _ in
+
+            // create post request
+            let url = URL(string: "\(self.pantherchainbaseurl)addJson")!
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+
+            var urlComponents = URLComponents()
+            let q1 = URLQueryItem(name: "publicKey", value: self.public_key_value ?? "NO KEY")
+            let hrsummary = self.heartRateManager.getSummary()
+            let q2 = URLQueryItem(name: "jsonData",
+                                  value: "{\"source\":\"HRMiOS\",\(hrsummary)}")
+            urlComponents.queryItems = [q1, q2]
+            let payload = urlComponents.percentEncodedQuery!.data(using: .utf8)
+            
+            let task = URLSession.shared.uploadTask(with: request, from:payload) { data, response, error in
+                guard let data = data, error == nil else {
+                    print(error?.localizedDescription ?? "No data")
+                    return
+                }
+                let str = String(data: data, encoding: .utf8)!
+                print(str)
+                DispatchQueue.main.async {
+                    self.showToast(message: str, seconds: 2.0)
+                }
+            }
+
+            task.resume()
             self.heartRateManager.deleteAllRecords()
         })
         controller.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

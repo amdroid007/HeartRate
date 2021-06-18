@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C7E5A6C82672886F00902929 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E5A6C72672886F00902929 /* Toast.swift */; };
+		C7E5A6CE267385E700902929 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C7E5A6CD267385E700902929 /* Settings.bundle */; };
 		FB1CFF2D1DD0022E0018BD87 /* TMReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1CFF2C1DD0022E0018BD87 /* TMReachability.m */; };
 		FB1CFF2F1DD00FD10018BD87 /* HeartRateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1CFF2E1DD00FD10018BD87 /* HeartRateManager.swift */; };
 		FB1CFF311DD01E2A0018BD87 /* HeartRateRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1CFF301DD01E2A0018BD87 /* HeartRateRecord.swift */; };
@@ -91,6 +93,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C7E5A6C72672886F00902929 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		C7E5A6CD267385E700902929 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		FB11C5D91E03C87800FE72D0 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		FB1CFF2B1DD0022E0018BD87 /* TMReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMReachability.h; sourceTree = "<group>"; };
 		FB1CFF2C1DD0022E0018BD87 /* TMReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMReachability.m; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 				FB1EA2C31DCFFF83008CCFFD /* KJYReachability.swift */,
 				FB1CFF2B1DD0022E0018BD87 /* TMReachability.h */,
 				FB1CFF2C1DD0022E0018BD87 /* TMReachability.m */,
+				C7E5A6C72672886F00902929 /* Toast.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -264,6 +269,7 @@
 				FB11C5D51E0378F800FE72D0 /* View */,
 				FB11C5D31E0378E700FE72D0 /* Controller */,
 				FB11C5D61E03790B00FE72D0 /* Support Files */,
+				C7E5A6CD267385E700902929 /* Settings.bundle */,
 			);
 			name = "iOS App";
 			path = HeartRate;
@@ -497,6 +503,7 @@
 			files = (
 				FBA2D61B1DBF9B7300728078 /* LaunchScreen.storyboard in Resources */,
 				FBA2D6181DBF9B7300728078 /* Assets.xcassets in Resources */,
+				C7E5A6CE267385E700902929 /* Settings.bundle in Resources */,
 				FBA2D6A51DBF9C4900728078 /* LICENSE in Resources */,
 				FBA2D6161DBF9B7300728078 /* Main.storyboard in Resources */,
 			);
@@ -536,6 +543,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBA2D6AD1DBF9C4900728078 /* YOLineChartImage.m in Sources */,
+				C7E5A6C82672886F00902929 /* Toast.swift in Sources */,
 				FBA2D6B01DBF9C5700728078 /* WatchConnectivityConstants.swift in Sources */,
 				FB1CFF2F1DD00FD10018BD87 /* HeartRateManager.swift in Sources */,
 				FB1CFF2D1DD0022E0018BD87 /* TMReachability.m in Sources */,
