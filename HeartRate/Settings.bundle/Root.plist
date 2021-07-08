@@ -10,7 +10,7 @@
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
 			<key>Title</key>
-			<string>PK last 5</string>
+			<string>Last 5 chars of PK:</string>
 			<key>Key</key>
 			<string>pref_pk</string>
 			<key>DefaultValue</key>
@@ -30,9 +30,29 @@
 			<key>Title</key>
 			<string>Check PK on launch</string>
 			<key>Key</key>
-			<string>enabled_preference</string>
+			<string>pref_loadpk</string>
 			<key>DefaultValue</key>
-			<true/>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Send detailed data to blockchain</string>
+			<key>Key</key>
+			<string>pref_detail</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Keep screen on while using</string>
+			<key>Key</key>
+			<string>pref_screenon</string>
+			<key>DefaultValue</key>
+			<false/>
 		</dict>
 	</array>
 </dict>
